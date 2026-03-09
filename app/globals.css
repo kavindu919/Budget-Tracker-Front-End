@@ -40,6 +40,9 @@
 .tabledata {
   @apply p-3 text-slate-500;
 }
+.tablerow {
+  @apply transition-colors duration-150 hover:bg-slate-50;
+}
 
 @keyframes blob {
   0%,
