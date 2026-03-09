@@ -40,13 +40,13 @@ export const getColorDisplay = (color: string) => {
   if (!color) return "-";
 
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
-      <span
-        className="h-1.5 w-1.5 rounded-full border border-slate-200 shadow-sm"
-        style={{ backgroundColor: color }}
-      />
-      {color}
-    </span>
+    <span
+      className="inline-flex h-6 w-16 rounded-full border"
+      style={{
+        backgroundColor: color,
+        borderColor: `${color}80`,
+      }}
+    />
   );
 };
 
