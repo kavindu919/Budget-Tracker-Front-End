@@ -14,7 +14,7 @@ export interface PaginationProps {
 
 export interface QueryProps {
   search?: string;
-  type?: "income" | "expense";
+  type?: "income" | "expense" | "";
   page: number;
   limit: number;
   sortBy: "createdAt";
