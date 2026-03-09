@@ -25,7 +25,7 @@ import TransactionFilters from "@/components/TransactionFilters";
 import { categoryInterface } from "@/utils/interfaces/categoryInterface";
 import { getAllCategory } from "@/services/category.Services";
 
-const AllTransactions = memo(() => {
+const AllTransactions = () => {
   const pathname = usePathname();
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState({
     id: "",
@@ -322,6 +322,6 @@ const AllTransactions = memo(() => {
       )}
     </div>
   );
-});
+};
 
 export default AllTransactions;
