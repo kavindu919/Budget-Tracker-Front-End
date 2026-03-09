@@ -41,10 +41,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const logout = async () => {
     try {
       const res = await fetchUserLogout();
-      if (res.data.success) {
+      if (res.success) {
         setUser(null);
         setError(null);
-        toast.success(res.data.message);
+        toast.success(res.message);
         router.push("/login");
       }
     } catch (error: any) {
