@@ -31,3 +31,36 @@ export interface TransactionPaginationProps {
   page: number;
   limit: number;
 }
+
+export interface DashboardSummaryProps {
+  totalIncome: number;
+  totalExpense: number;
+  balance: number;
+  monthlyData: {
+    month: string;
+    income: number;
+    expense: number;
+  }[];
+  categoryExpenses: {
+    name: string;
+    color: string;
+    value: number;
+  }[];
+  budgetVsActual: {
+    name: string;
+    color: string;
+    budget: number;
+    spent: number;
+  }[];
+  recentTransactions: {
+    id: string;
+    title: string;
+    amount: number;
+    type: string;
+    date: string;
+    category: {
+      name: string;
+      color: string;
+    };
+  }[];
+}
