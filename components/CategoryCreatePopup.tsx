@@ -90,7 +90,7 @@ const CreateCategoryModal = ({
       />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-2xl rounded-lg bg-white shadow-xl">
+        <div className="w-full max-w-2xl rounded-lg bg-white shadow-xl overflow-hidden">
           <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
             <div>
               <h5 className="text-lg font-semibold">Create Category</h5>
@@ -198,7 +198,7 @@ const CreateCategoryModal = ({
             </div>
           </form>
 
-          <div className="flex items-center justify-end gap-3 px-6 pb-4 b">
+          <div className="flex items-center justify-end gap-3 px-6 pb-4 ">
             <button
               onClick={handleClose}
               disabled={loading}
