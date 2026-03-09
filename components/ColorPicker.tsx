@@ -29,7 +29,7 @@ const ColorPicker = ({
             disabled={disabled}
             className={`h-10 rounded-lg border-2 transition ${
               value === color
-                ? "border-gray-800 scale-110"
+                ? "border-transparent scale-110"
                 : "border-transparent"
             } ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
             style={{ backgroundColor: color }}
