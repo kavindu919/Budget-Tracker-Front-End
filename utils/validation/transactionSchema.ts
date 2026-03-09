@@ -2,10 +2,13 @@ import z from "zod";
 
 export const transactionSchema = z.object({
   title: z.string({ message: "Title is required" }).min(1).max(100),
-  amount: z
+  amount: z.coerce
     .number({ message: "Amount is required" })
     .positive("Amount must be positive"),
-  categoryId: z.string({ message: "Category is required" }).min(1),
+  categoryId: z
+    .string({ message: "Category is required" })
+    .trim()
+    .min(1, { message: "Category is required" }),
   type: z.enum(["income", "expense"]),
   date: z.string({ message: "Date is required" }).min(1),
   note: z.string().optional(),

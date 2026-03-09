@@ -18,6 +18,8 @@ export interface TransactionQueryProps {
   search?: string;
   type?: string;
   categoryId?: string;
+  startDate?: string;
+  endDate?: string;
   page: number;
   limit: number;
   sortBy: string;
