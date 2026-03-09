@@ -19,7 +19,7 @@ import { getColorDisplay, getTypeBadge } from "@/utils/helpers/badge";
 import EditCategoryModal from "@/components/EditCategoryModal";
 import CategoryFilters from "@/components/CategoryFilter";
 
-const AllIssues = () => {
+const AllCategory = () => {
   const pathname = usePathname();
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState<{
     id: string;
@@ -272,4 +272,4 @@ const AllIssues = () => {
   );
 };
 
-export default AllIssues;
+export default AllCategory;
