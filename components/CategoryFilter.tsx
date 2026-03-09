@@ -25,7 +25,7 @@ const CategoryFilters = ({ setQuery, query }: FilterProps) => {
           name="search"
           type="text"
           label=""
-          placeholder="Search issue title"
+          placeholder="Search"
           onChange={handleChnage}
           value={query.search}
         />

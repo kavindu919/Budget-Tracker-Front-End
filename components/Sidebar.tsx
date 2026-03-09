@@ -30,7 +30,7 @@ export default function Sidebar({
     {
       label: "Categories",
       icon: LuListTodo,
-      path: "/dashboard/categories",
+      path: "/dashboard/category",
     },
     {
       label: "Add Transaction",
