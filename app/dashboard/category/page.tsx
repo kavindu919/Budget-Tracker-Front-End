@@ -175,44 +175,56 @@ const AllIssues = () => {
             {loading ? (
               [...Array(5)].map((_, index) => (
                 <tr key={index}>
-                  <td colSpan={5} className="p-4">
-                    <div className="h-6 w-full animate-pulse rounded bg-slate-200"></div>
+                  <td colSpan={5} className="px-4 py-3">
+                    <div className="h-5 w-full animate-pulse rounded-md bg-slate-100" />
                   </td>
                 </tr>
               ))
             ) : data.length === 0 ? (
               <tr>
-                <td
-                  colSpan={5}
-                  className="p-6 text-center text-sm text-slate-500"
-                >
-                  No data found.
+                <td colSpan={5} className="px-4 py-12 text-center">
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-slate-400">
+                      No categories found
+                    </p>
+                    <p className="text-xs text-slate-300">
+                      Create a category to get started
+                    </p>
+                  </div>
                 </td>
               </tr>
             ) : (
               data.map((item) => (
-                <tr key={item.id}>
-                  <td className="tabledata">{item.name ?? "-"}</td>
+                <tr key={item.id} className="tablerow">
+                  <td className="tabledata font-medium text-slate-700">
+                    {item.name ?? "-"}
+                  </td>
                   <td className="tabledata">{getTypeBadge(item.type)}</td>
                   <td className="tabledata">{getColorDisplay(item.color)}</td>
-                  <td className="tabledata">
+                  <td className="tabledata text-slate-400">
                     {item.createdAt
-                      ? new Date(item.createdAt).toLocaleDateString()
+                      ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })
                       : "-"}
                   </td>
-                  <td className="tabledata flex flex-row items-center justify-start gap-3">
-                    <button
-                      className="cursor-pointer"
-                      onClick={() => handleEditClick(item)}
-                    >
-                      <FiEdit2 />
-                    </button>
-                    <button
-                      className="cursor-pointer"
-                      onClick={() => handleDeleteClick(item.id!)}
-                    >
-                      <MdDeleteOutline />
-                    </button>
+                  <td className="tabledata">
+                    <div className="flex items-center gap-2">
+                      <button
+                        className="rounded-md p-1.5 text-slate-400 transition-colors duration-150 hover:bg-slate-100 hover:text-slate-600"
+                        onClick={() => handleEditClick(item)}
+                      >
+                        <FiEdit2 size={14} />
+                      </button>
+                      <button
+                        className="rounded-md p-1.5 text-slate-400 transition-colors duration-150 hover:bg-red-50 hover:text-red-500"
+                        onClick={() => handleDeleteClick(item.id!)}
+                      >
+                        <MdDeleteOutline size={16} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
