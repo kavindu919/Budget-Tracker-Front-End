@@ -16,6 +16,7 @@ interface CreateTransactionPopupProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess?: () => void;
+  categories: categoryInterface[];
 }
 
 const CreateTransactionPopup = memo(
@@ -43,24 +44,6 @@ const CreateTransactionPopup = memo(
         });
       }
     }, [isOpen]);
-
-    useEffect(() => {
-      if (isOpen && categories.length) fetchCategories();
-    }, [isOpen]);
-
-    const fetchCategories = useCallback(async () => {
-      try {
-        const res = await getAllCategory({
-          page: 1,
-          limit: 100,
-          sortBy: "createdAt",
-          sortOrder: "desc",
-        });
-        if (res.success) setCategories(res.data);
-      } catch (error) {
-        toast.error("Failed to load categories");
-      }
-    }, []);
 
     const categoryOptions = categories.map((cat) => ({
       value: cat.id!,

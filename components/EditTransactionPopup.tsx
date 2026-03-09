@@ -8,10 +8,7 @@ import { transactionInterface } from "@/utils/interfaces/transactionInterface";
 import { categoryInterface } from "@/utils/interfaces/categoryInterface";
 import toast from "react-hot-toast";
 import { ZodError } from "zod";
-import {
-  transactionSchema,
-  updateTransactionSchema,
-} from "@/utils/validation/transactionSchema";
+import { updateTransactionSchema } from "@/utils/validation/transactionSchema";
 import { editTransaction } from "@/services/transaction.Services";
 import { getAllCategory } from "@/services/category.Services";
 
@@ -20,6 +17,7 @@ interface EditTransactionModalProps {
   data: transactionInterface;
   onClose: () => void;
   onSuccess?: () => void;
+  categories: categoryInterface[];
 }
 
 const EditTransactionPopup = memo(
@@ -36,24 +34,6 @@ const EditTransactionPopup = memo(
     useEffect(() => {
       setData(initialData);
     }, [initialData]);
-
-    useEffect(() => {
-      if (isOpen) fetchCategories();
-    }, [isOpen]);
-
-    const fetchCategories = async () => {
-      try {
-        const res = await getAllCategory({
-          page: 1,
-          limit: 100,
-          sortBy: "createdAt",
-          sortOrder: "desc",
-        });
-        if (res.success) setCategories(res.data);
-      } catch (error) {
-        toast.error("Failed to load categories");
-      }
-    };
 
     const categoryOptions = categories.map((cat) => ({
       value: cat.id!,
