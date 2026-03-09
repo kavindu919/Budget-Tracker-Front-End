@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import ColorPicker from "@/components/ColorPicker";
 import FormDropdown from "@/components/FormDropdown";
@@ -30,14 +30,12 @@ const CreateCategoryModal = ({
     color: "#3B82F6",
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    },
+    [],
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,16 +67,12 @@ const CreateCategoryModal = ({
     }
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     if (!loading) {
-      setData({
-        name: "",
-        type: "expense",
-        color: "#3B82F6",
-      });
+      setData({ name: "", type: "expense", color: "#3B82F6" });
       onClose();
     }
-  };
+  }, [loading, onClose]);
 
   if (!isOpen) return null;
 
@@ -90,7 +84,7 @@ const CreateCategoryModal = ({
       />
 
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-2xl rounded-lg bg-white shadow-xl overflow-hidden">
+        <div className="w-full max-w-2xl overflow-hidden rounded-lg bg-white shadow-xl">
           <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
             <div>
               <h5 className="text-lg font-semibold">Create Category</h5>
@@ -143,7 +137,7 @@ const CreateCategoryModal = ({
                     style={{ backgroundColor: data.color + "20" }}
                   >
                     <div
-                      className="flex h-10 w-10 items-center justify-center rounded-lg text-white font-bold"
+                      className="flex h-10 w-10 items-center justify-center rounded-lg font-bold text-white"
                       style={{ backgroundColor: data.color }}
                     >
                       {data.name.charAt(0).toUpperCase() || "C"}
@@ -198,7 +192,7 @@ const CreateCategoryModal = ({
             </div>
           </form>
 
-          <div className="flex items-center justify-end gap-3 px-6 pb-4 ">
+          <div className="flex items-center justify-end gap-3 px-6 pb-4">
             <button
               onClick={handleClose}
               disabled={loading}
@@ -207,7 +201,7 @@ const CreateCategoryModal = ({
               Cancel
             </button>
             <button
-              className="bg-secondary h-10 w-32 cursor-pointer  border border-slate-300 text-sm font-bold text-white shadow-md focus:drop-shadow-xl rounded-md"
+              className="bg-secondary h-10 w-32 cursor-pointer rounded-md border border-slate-300 text-sm font-bold text-white shadow-md focus:drop-shadow-xl"
               type="submit"
               disabled={loading}
               onClick={handleSubmit}
