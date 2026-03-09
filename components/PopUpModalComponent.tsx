@@ -63,7 +63,7 @@ const PopUpModalComponent = ({
                 disabled={loading}
                 className="bg-secondary cursor-pointer rounded-md border border-slate-300 px-3 py-1.5 text-sm font-bold text-white shadow-md transition-colors duration-150 focus:drop-shadow-xl disabled:opacity-50"
               >
-                {loading ? "Loading..." : confirmText}
+                {confirmText}
               </button>
             )}
           </div>
