@@ -78,7 +78,9 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (err) {
         processQueue(err, null);
-        sessionStorage.setItem("redirectToLogin", "true");
+        if (originalRequest.url !== "/auth/profile") {
+          sessionStorage.setItem("redirectToLogin", "true");
+        }
         return Promise.reject(err);
       }
     }
