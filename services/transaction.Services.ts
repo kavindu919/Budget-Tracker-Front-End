@@ -26,6 +26,16 @@ export const getAllTransactions = async (query: TransactionQueryProps) => {
   }
 };
 
+export const getTransactionSummary = async () => {
+  try {
+    const res = await axiosInstance.get("/transaction/summary", {});
+    return res.data;
+  } catch (error: any) {
+    const errorMessage = error?.message || error?.response?.data?.message;
+    throw new Error(errorMessage);
+  }
+};
+
 export const editTransaction = async (data: transactionInterface) => {
   try {
     const res = await axiosInstance.post("/transaction/update", data);
