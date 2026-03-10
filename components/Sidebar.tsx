@@ -1,6 +1,17 @@
 "use client";
 
-import { LuActivity, LuFilePlus, LuLayers, LuListTodo } from "react-icons/lu";
+import {
+  LuActivity,
+  LuCreditCard,
+  LuFilePlus,
+  LuLayers,
+  LuListTodo,
+  LuPiggyBank,
+  LuReceipt,
+  LuTrendingDown,
+  LuTrendingUp,
+  LuWallet,
+} from "react-icons/lu";
 import { VscDashboard } from "react-icons/vsc";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,6 +39,11 @@ export default function Sidebar({
       path: "/dashboard/transactions",
     },
     {
+      label: "Budget",
+      icon: LuPiggyBank,
+      path: "/dashboard/budget",
+    },
+    {
       label: "Categories",
       icon: LuListTodo,
       path: "/dashboard/category",
@@ -35,12 +51,37 @@ export default function Sidebar({
     {
       label: "Add Transaction",
       icon: LuFilePlus,
-      path: "/dashboard/add-transaction",
+      path: "/coming-soon",
+    },
+    {
+      label: "Income",
+      icon: LuTrendingUp,
+      path: "/coming-soon",
+    },
+    {
+      label: "Expenses",
+      icon: LuTrendingDown,
+      path: "/coming-soon",
+    },
+    {
+      label: "Accounts / Wallet",
+      icon: LuWallet,
+      path: "/coming-soon",
+    },
+    {
+      label: "Cards",
+      icon: LuCreditCard,
+      path: "/coming-soon",
+    },
+    {
+      label: "Bills / Receipts",
+      icon: LuReceipt,
+      path: "/coming-soon",
     },
     {
       label: "Activity",
       icon: LuActivity,
-      path: "/dashboard/activity",
+      path: "/coming-soon",
     },
   ];
 
