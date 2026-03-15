@@ -100,7 +100,7 @@ const CreateTransactionPopup = memo(
     }, [loading, onClose]);
 
     if (!isOpen) return null;
-    console.log(categories);
+
     return (
       <>
         <div

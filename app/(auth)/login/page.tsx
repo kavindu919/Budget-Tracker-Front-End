@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -28,44 +28,46 @@ const LoginPage = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const validData = loginSchema.parse(data);
-      const res = await fetchUserLogin(validData.email, validData.password);
-      console.log(res);
-      if (res.success) {
-        toast.success(res.message);
-        setUser({
-          id: res.data.id,
-          name: res.data.name,
-          email: res.data.email,
-        });
-        setData({
-          email: "",
-          password: "",
-        });
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 1000);
-      } else {
-        toast.error(res.message);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      try {
+        setLoading(true);
+        const validData = loginSchema.parse(data);
+        const res = await fetchUserLogin(validData.email, validData.password);
+        if (res.success) {
+          toast.success(res.message);
+          setUser({
+            id: res.data.id,
+            name: res.data.name,
+            email: res.data.email,
+          });
+          setData({
+            email: "",
+            password: "",
+          });
+          setTimeout(() => {
+            router.push("/dashboard");
+          }, 1000);
+        } else {
+          toast.error(res.message);
+        }
+      } catch (error: any) {
+        if (error instanceof ZodError) {
+          toast.error(error.issues[0]?.message);
+          return;
+        }
+        if (error.message) {
+          toast.error(error.message);
+        } else {
+          toast.error("Unexpected error occurred");
+        }
+      } finally {
+        setLoading(false);
       }
-    } catch (error: any) {
-      if (error instanceof ZodError) {
-        toast.error(error.issues[0]?.message);
-        return;
-      }
-      if (error.message) {
-        toast.error(error.message);
-      } else {
-        toast.error("Unexpected error occurred");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [data],
+  );
   return (
     <main className="grid min-h-screen grid-cols-1 md:grid-cols-2">
       <div className="flex w-full flex-col items-center justify-center gap-4 p-8 md:p-12">

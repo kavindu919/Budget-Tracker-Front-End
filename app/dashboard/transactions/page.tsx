@@ -96,7 +96,6 @@ const AllTransactions = () => {
       toast.error("Failed to load categories");
     }
   }, []);
-
   useEffect(() => {
     fetchData();
   }, [fetchData]);
