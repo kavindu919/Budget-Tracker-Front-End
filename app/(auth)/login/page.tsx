@@ -46,6 +46,7 @@ const LoginPage = () => {
             email: "",
             password: "",
           });
+          sessionStorage.removeItem("redirectToLogin");
           setTimeout(() => {
             router.push("/dashboard");
           }, 1000);
