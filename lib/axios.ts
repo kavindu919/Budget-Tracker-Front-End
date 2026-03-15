@@ -85,6 +85,12 @@ axiosInstance.interceptors.response.use(
       }
     }
 
+    if (error.response?.status === 403) {
+      sessionStorage.setItem("redirectToLogin", "true");
+      window.location.href = "/login";
+      return Promise.reject(error);
+    }
+
     if (!error.response) {
       console.error("Network Error:", error.message);
       return Promise.reject({
