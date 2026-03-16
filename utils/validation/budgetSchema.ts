@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const budgetSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   amount: z.coerce
     .number({ message: "Amount is required" })
     .positive("Amount must be positive"),

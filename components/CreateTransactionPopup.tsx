@@ -20,9 +20,9 @@ interface CreateTransactionPopupProps {
 }
 
 const CreateTransactionPopup = memo(
-  ({ isOpen, onClose, onSuccess }: CreateTransactionPopupProps) => {
+  ({ isOpen, onClose, onSuccess, categories }: CreateTransactionPopupProps) => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [categories, setCategories] = useState<categoryInterface[]>([]);
+
     const [data, setData] = useState<transactionInterface>({
       title: "",
       amount: 0,
